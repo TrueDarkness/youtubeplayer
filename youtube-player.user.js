@@ -1,20 +1,14 @@
 // ==UserScript==
-// @name         AutoSpeedTest: Ookla's Speedtest.net
-// @namespace    https://github.com/TrueDarkness/autospeedtest
+// @name         YoutubePlayer: Autoresume & Hide
+// @namespace    https://github.com/TrueDarkness/youtubeplayer
 // @version      0.1
 // @description  Repeat speedtests automatically on Speedtest.net
-// @match        https://www.speedtest.net/?autotest=true
+// @match        https://www.youtube.com/watch
 // @icon         https://b.cdnst.net/images/favicons/favicon.svg
-// @updateURL    https://raw.githubusercontent.com/TrueDarkness/autospeedtest/main/ookla-speedtest-net.user.js
-// @downloadURL  https://raw.githubusercontent.com/TrueDarkness/autospeedtest/main/ookla-speedtest-net.user.js
+// @updateURL    https://raw.githubusercontent.com/TrueDarkness/youtubeplayer/edit/main/youtube-player.user.js
+// @downloadURL  https://raw.githubusercontent.com/TrueDarkness/youtubeplayer/edit/main/youtube-player.user.js
 // @grant        none
 // ==/UserScript==
-
-// USAGE
-// Access the website through this link: https://www.speedtest.net/?autotest=true
-
-// Amount of minutes to repeat the tests
-var minutes_per_loop = 5;
 
 (function() {
     var basealt;
@@ -28,13 +22,10 @@ var minutes_per_loop = 5;
 
     // Delay to play the "Start" to run the test
     var timeout1 = setTimeout(function(){
-        $(".start-text").click().remove();
-    }, 2000);
-
-    // Delay to refresh the page to run the test again
-    var timeout2 = setTimeout(function(){
-        window.location.href = "https://www.speedtest.net/?autotest=true";
-    }, (minutes_per_loop * 60 * 1000));
+       if ( $("#tp-yt-iron-overlay-backdrop.opened").length == 1 ) {
+           $(".confirm-button").click();
+       }
+    }, 1);
 
 })();
 
